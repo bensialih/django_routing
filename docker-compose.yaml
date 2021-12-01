@@ -1,3 +1,13 @@
+version: "3.3"
+   
+services:
+  djweb1:
+    build: .
+    container_name: djangoapp
+    command: bash /run.bash
+    ports:
+      - "8000:8000"
+      - "8001:8001"
 
 
 
