@@ -6,11 +6,12 @@ ADD main /main
 ADD auxiliary /auxiliary
 ADD requirements.txt /requirements.txt
 
+ADD nginx/django.conf /etc/nginx/conf.d/django.conf
+
 RUN pip install -r /requirements.txt
 
-ADD nginx/django.conf /etc/nginx/conf.d/django.conf
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD run.bash /run.bash
-
 
 EXPOSE 8000
 EXPOSE 8001
