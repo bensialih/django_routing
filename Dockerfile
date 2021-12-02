@@ -1,6 +1,6 @@
 FROM python:3.8-buster
 
-RUN apt-get update && apt-get install screen nginx -y
+RUN apt-get update && apt-get install screen nginx apache2-utils -y
 
 ADD main /main
 ADD auxiliary /auxiliary
