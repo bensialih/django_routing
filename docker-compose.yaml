@@ -1,15 +1,28 @@
 version: "3.3"
    
 services:
-  djweb1:
+  djweb1_nginx:
     build: .
     container_name: djangoapp
     command: bash /run.bash
     ports:
-      - "8000:8000"
-      - "8001:8001"
       - "8009:80"
 
+    volumes:
+      - ./run.bash:/run.bash:ro
 
+  djweb1_traefik:
+    build:
+      context: .
+      dockerfile: Dockerfile_traefik
 
+    container_name: djangoapp_traefik
+    command: bash /traefik_run.bash
+    ports:
+      - "80:80"
+      - "8080:8080"
 
+    volumes:
+      - ./traefik/config.yaml:/etc/traefik/traefik.yaml:ro
+      - ./traefik/traefik_config.yaml:/traefik_config.yaml:ro
+      - ./traefik_run.bash:/traefik_run.bash

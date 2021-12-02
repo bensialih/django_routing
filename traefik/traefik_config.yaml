@@ -1,0 +1,20 @@
+http:
+  routers:
+    main:
+      rule: Host(`django.me`) && PathPrefix(`/api`)
+      service: django
+
+    auxiliary:
+      rule: Host(`django.me`) && PathPrefix(`/aux`)
+      service: other_service
+
+  services:
+    django:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8000/"
+
+    other_service:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8001/"

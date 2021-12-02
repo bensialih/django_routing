@@ -1,0 +1,21 @@
+FROM python:3.8-buster
+
+RUN apt-get update && apt-get install screen -y
+
+# ADD main /main
+# ADD auxiliary /auxiliary
+ADD new_redirect /new_redirect
+
+ADD requirements.txt /requirements.txt
+ADD ./traefik/traefik /usr/local/bin/traefik
+
+ADD ./traefik/config.yaml /etc/traefik/traefik.yaml
+
+RUN pip install -r /requirements.txt
+
+ADD traefik_run.bash /traefik_run.bash
+
+EXPOSE 8000
+# EXPOSE 8001
+EXPOSE 80
+EXPOSE 8080

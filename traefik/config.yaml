@@ -1,0 +1,166 @@
+log:
+  level: INFO
+  filePath: /tmp/traefik.log
+
+api:
+  dashboard: true
+  insecure: true
+  debug: true
+
+
+entryPoints:
+  web:
+    address: :80
+
+
+
+
+
+# [frontends]
+#   [frontends.frontend1]
+#   backend = "backend1"
+#     [frontends.frontend1.routes.test_1]
+#     rule = "Host:localhost"
+# [backends]
+#   [backends.backend1]
+#     [backends.backend1.servers.server1]
+#     url = "http://localhost:8000"
+# #[api]
+# [file]
+
+# enable: true
+
+# http:
+#   routers:
+#     catapp:
+#       rule: Host(`localhost`)
+#       entrypoints: web
+#       service: catapp
+
+providers:
+  file:
+    filename: /traefik_config.yaml
+
+# frontends:
+#   webapp-host-front:
+#     backend: "webapp-host-back"
+#     routes: webapp-host-hostroute
+#       rule: Host(`localhost`)
+#     [frontends.webapp-host-front.routes.webapp-host-pathroute]
+#     rule = "PathPrefixStrip:/host"
+
+
+# backends:
+#   webapp-host-back:
+#     servers:
+#       - host1
+#       url: "http://127.0.0.1:8000"
+
+
+# http:
+#   routers:
+#     restapi:
+#       rule: "PathPrefix(`/api/v1`)"
+#       service: "restapi"
+#       entryPoints:
+#         - web
+#       # rule: "Host(`localhost`)"
+#     docs:
+#       rule: "PathPrefix(`/docs`)"
+#       service: "docs"
+#       entryPoints:
+#         - web
+#       # rule: "Host(`localhost`)"
+
+#   services:
+#     restapi:
+#       loadBalancer:
+#         servers:
+#           - url: "http://0.0.0.0:8000/"
+#     docs:
+#       loadBalancer:
+#         servers:
+#           - url: "http://0.0.0.0:8001/"
+
+    # client:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://sicon_client"
+
+# ==============
+
+# entryPoints:
+#   web:
+#     address: ":80"
+
+# http:
+#   routers:
+#     routerTest:
+#       service: django
+#       rule: Host(`localhost`)
+
+
+#   routers:
+#     restapi:
+#       rule: "PathPrefix(`/api/v1`)"
+#       middlewares:
+#         - "restapi"
+#       service: "restapi"
+#       entryPoints:
+#         - http
+# # traefik.http.services.serviceName.loadbalancer.server.port=8080
+#   services:
+#     django:
+#       loadBalancer:
+#         servers:
+#           - url: "http://localhost:8000"
+
+
+
+# ==================
+
+# entryPoints:
+#   http-tcp:
+#     address: ":80"
+
+
+
+
+# http:
+#   routers:
+#     my-app:
+#       rule: Host(localhost)
+
+
+
+
+#     redirecttohttps:
+#       entryPoints = ["http-tcp"]
+#       rule = "HostRegexp(`{host:.+}`)"
+#       service = "noop"
+
+# http.routers.my-app.rule=Host(localhost,127.0.0.1)
+
+  #   http:
+  #     redirections:
+  #       entryPoint:
+  #         to: "https-tcp"
+  #         scheme: "http"
+  # https-tcp:
+  #   address: ":8011"
+
+# providers:
+#   # docker:
+#   #   endpoint: "unix:///var/run/docker.sock"
+#   #   exposedByDefault: false
+#   #   network: "proxy"
+#   file:
+#     directory: "/home/abdel/Documents/treafik/config"
+
+# certificatesResolvers:
+#   email: example@example.com
+#   letsEncrypt:
+#     acme:
+#       storage: "/var/traefik/acme/acme.json"
+#       httpChallenge:
+#         entryPoint: "http-tcp"

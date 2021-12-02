@@ -1,12 +1,13 @@
-
 cd /main
 
+python manage.py migrate
 gunicorn --workers=2 'main.wsgi' -b :8000 -D
 
 # screen -d -m python manage.py runserver 0.0.0.0:8000
 
 cd /auxiliary
 
+python manage.py migrate
 gunicorn --workers=2 'auxiliary.wsgi' -b :8001 -D
 
 service nginx start
